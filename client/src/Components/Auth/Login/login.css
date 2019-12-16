@@ -1,0 +1,223 @@
+@import
+url("https://fonts.googleapis.com/css?family=Prompt");
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+body,html{
+  width:100vw;
+  height:100%;
+  font-family: sans-serif;
+  overflow-x:hidden;
+}
+#login-button, #sign-up, #login{
+  font-family: "Prompt";
+  letter-spacing:1px;
+}
+.main-container{
+  display:flex;
+  height:100vh;
+  width:100vw;
+  
+}
+.left, .right{
+  flex:1;
+  height:100%;
+}
+.left{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: url('http://1000logos.net/wp-content/uploads/2017/06/Twitter-Logo.png') no-repeat, #25aafc;
+  background-position:30% 50%;
+}
+.icon{
+  color:#fff;
+  font-family:FontAwesome;
+  font-size:2em; 
+  display:inline-block;
+}
+.search::before{
+  content:'\f002';
+  font-family:FontAwesome;
+}
+.chat::before{
+  content:'\f0e5';
+  font-family:FontAwesome;
+}
+.group::before{
+  content:'\f0c0';
+  font-family:FontAwesome;
+}
+.communication-box{
+  display:flex;
+  flex-direction:column;
+}
+.message{
+  margin:1em;
+  display:flex;
+  align-items:center;
+}
+/*RIGHT SIDE*/
+.right input, 
+#login-button{
+  padding:1em;
+}
+.username,
+.password{
+  padding:0 .5em;
+}
+.left p {
+  display:inline-block;
+  margin:0 1em;
+  color:#fff;
+  font:bold 1.1em/1 "Helvetica";
+}
+.right{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:1;
+}
+.login-form{
+  position:absolute;
+  top:20px;
+  display:flex;
+}
+.right input{
+  border:1px solid rgba(0,0,0,.08);
+  color:#aaa; 
+  height: 45px;
+  transition: background .2s linear;
+  width: 200px;
+}
+.right input:focus{
+  outline: 0;
+  color: #14171a;
+  border-color: rgba(0,132,180,0.5);
+}
+.right input:focus::placeholder{
+  color:#aaa;
+}
+.forgot-pass{
+  display:block;
+  margin:5px 0 0 0;
+}
+.forgot-pass a{
+  text-decoration:none;
+  font-size:.9em;
+  color: #aab8c2;
+  font-weight: 100;
+}
+.forgot-pass a:hover{
+  text-decoration:underline;
+}
+#login-button{
+  align-self:flex-start;
+  border-radius:100px;
+  border:1px solid #25aafc;
+  background-color:#fff;
+  border: 1px solid #1da1f2;
+  color: #1da1f2;
+  font-weight:bold;
+  cursor:pointer;
+  transition: all .2s ease-in-out;
+  height: 45px;
+  font-size: 14px;
+  line-height: 20px;
+}
+#login-button:hover{
+  background-color:rgba(36, 164, 242, .1);
+}
+.join-box{
+  max-width:350px;
+}
+.bird::before{
+  content:"\f099";
+  font-family:FontAwesome;
+  color: #25aafc;
+  font-size:1.5em;
+}
+.bird{
+  margin:0 0 .3em 0;
+}
+.join-box h1{
+  margin:0 0 1.5em 0;
+  font-size: 27px;
+  line-height: 32px;
+}
+.join-box h2{
+  font-size:1.2em;
+  padding:1em 0;
+}
+#sign-up, #login{
+  width:100%;
+  padding:.7em;
+  margin:.5em 0;
+  border-radius:100px;
+  border:none;
+  font-weight:bold;
+  cursor:pointer;
+  font-size: 14px;
+}
+
+#sign-up:focus, #login:focus{
+outline: none;
+}
+
+#sign-up{
+  background-color:#25aafc;
+  color:#fff;
+}
+#login{
+  background-color:#fff;
+  border:1px solid #25aafc;
+  color:#25aafc;
+}
+
+/*FOOTER*/
+footer{
+  border-top:1px solid #ccc;
+  padding:1em;
+  width:100%;
+  background-color:#fff;
+}
+footer a, footer p{
+  color:#bbb;
+  font-size:.8em;
+  text-align:center;
+}
+.footer-content{
+  display:table;
+  margin:0 auto;
+}
+footer p{
+  display:inline;
+}
+footer a{
+  text-decoration:none;
+  margin:0 .4em;
+}
+footer a:hover{
+  text-decoration:underline;
+}
+
+@media screen and (max-width:1020px),
+  screen and (max-height:500px){
+  .login-form{
+    display:none;
+  }
+}
+@media screen and (max-width:770px){
+  .main-container{
+    display:block;
+    position:relative;
+    height:100%;
+  }
+  footer{
+    position:absolute;
+    bottom:0;
+  }
+}
