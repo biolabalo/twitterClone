@@ -1,0 +1,220 @@
+#root, .App{
+  height: 100%;
+}
+
+.topbar {
+  backface-visibility: hidden;
+  border-bottom: 1px solid #e6ecf0;
+  border-bottom: 1px solid 
+  rgba(0,0,0,0.05);
+  // position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.navb-color{
+background:#fff !important;
+height: 46px;
+border-bottom: 1px solid rgba(0,0,0,0.25);
+height: 46px;
+position: relative;
+width: 100%;
+color: #66757f !important;
+}
+
+.navbar-brand{
+  color: #66757f !important;
+}
+.cunt > a > svg{
+  color : #1da1f2;
+}
+.cunt a{
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1;
+  padding: 0 14px 0 4px;
+}
+
+.cunt{
+max-width: 865px !important;
+margin: 0 auto;
+}
+
+@media screen and (max-width:1190px) {
+  .cunt {
+   min-width:590px
+  }
+ }
+
+ .login-section{
+  background-color:#e6ecf0;
+  height: 100%;
+ }
+
+ .page-canvas{
+  width: auto;
+  background-color:#fff !important;
+  max-width: 835px;
+  margin: 0 auto;
+  border: 1px solid rgba(0,0,0,0.1);
+  background-clip: padding-box;
+  margin-top: 20px;
+  height: 327.2px;
+  padding: 10px;
+ }
+
+ .signin-wrapper {
+  width: auto;
+  max-width: 585px;
+  padding: 0 10px;
+  margin: 0 auto 10px;
+}
+
+.signin-wrapper h1 {
+  padding: 40px 0 20px 0;
+  clear: both;
+  font-size: 24px;
+  line-height: .8;
+  color: #14171a;
+}
+
+.signin fieldset {
+  margin-bottom: 16px;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.signin .field {
+  margin-bottom: 15px;
+}
+
+.signin-wrapper form input[type="text"], .signin-wrapper form input[type="password"], .resend-password-wrapper form input[type="text"] {
+  width: 97%;
+  max-width: 280px;
+  margin-right: 10px;
+}
+
+.js-initial-focus{
+  transition: background .2s linear;
+  border: 1px solid #e6ecf0;
+  padding: 4px;
+  font-size: 14px;
+line-height: 20px;
+}
+
+.js-initial-focus:focus{
+  outline: 0;
+color:
+#14171a;
+border-color:
+rgba(0,132,180,0.5);
+}
+
+.EdgeButton, .EdgeButton:visited {
+  border-radius: 100px;
+  box-shadow: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.EdgeButton--primary {
+background-color: #1da1f2;
+border: 1px solid#1da1f2;
+color:#fff;
+}
+
+.EdgeButton--primary:focus {
+  border-color: 
+#1da1f2;
+box-shadow: 0 0 0 2px
+#fff,0 0 0 4px
+#71c9f8;
+color:
+  #fff;
+  text-decoration: none;
+}
+
+.signin .subchck {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.signin .remember {
+  margin-left: 12px;
+  text-align: left;
+  color: 
+  #14171a;
+  line-height: 30px;
+}
+
+.t1-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #14171a;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.subchck input[type="checkbox"], .subchck input[type="radio"] {
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 3px 0;
+  line-height: normal;
+  border: 0;
+  background-color: 
+  transparent;
+  cursor: pointer;
+}
+.subchck a {
+  color: 
+  #1c94e0;
+  text-decoration: none;
+}
+
+.subchck a {
+  background: 
+  transparent;
+}
+
+.login-responsive .mobile {
+  width: auto;
+  padding: 20px 10px;
+  background-color:
+#f5f8fa;
+font-size: 14px;
+line-height: 20px;
+color:
+#657786;
+border-bottom-right-radius: 4px;
+border-bottom-left-radius: 4px;
+}
+
+.login-responsive .mobile .signup-helper {
+  margin-bottom: 15px;
+}
+
+.login-responsive .mobile p {
+  max-width: 585px;
+  margin: 0 auto;
+  margin-bottom: 0px;
+}
+
+.login-responsive{
+  font-size: 14px;
+  line-height: 20px;
+  color:#657786;
+}

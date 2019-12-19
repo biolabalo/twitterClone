@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./login.css";
+import "./home.css";
 
 const Login = () => {
   return (
@@ -22,20 +22,11 @@ const Login = () => {
           </div>
         </div>
         <div className="right">
-          <div className="login-form">
-            <div className="username">
-              <input type="text" placeholder="Phone, email, or username" />
-            </div>
-            <div className="password">
-              <input type="password" placeholder="Password" />
-              <span className="forgot-pass">
-                <a href="#">Forgot password?</a>
-              </span>
-            </div>
-            <button id="login-button">Log in</button>
-          </div>
           <div className="join-box">
             <span className="icon bird"></span>
+            <button id="login-button" className="float-right mt-3">
+              Log in
+            </button>
             <h1>See what's happening in the world right now</h1>
             <h2>Join Twitter today.</h2>
             <div className="signup-login">
