@@ -60,7 +60,7 @@ margin: 0 auto;
   margin: 0 auto;
   border: 1px solid rgba(0,0,0,0.1);
   background-clip: padding-box;
-  margin-top: 20px;
+  margin-top: 10px;
   height: 327.2px;
   padding: 10px;
  }
@@ -94,7 +94,7 @@ fieldset {
   margin-bottom: 15px;
 }
 
-.signin-wrapper form input[type="text"], .signin-wrapper form input[type="password"], .resend-password-wrapper form input[type="text"] {
+.signin-wrapper form input[type="text"], .signin-wrapper form input[type="email"],.signin-wrapper form input[type="password"], .resend-password-wrapper form input[type="text"] {
   width: 97%;
   max-width: 280px;
   margin-right: 10px;

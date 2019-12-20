@@ -1,11 +1,22 @@
 import React from "react";
 import "./login.scss";
-import { withRouter, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import useForm from "react-hook-form";
 
 const Login = () => {
+
+  const { register, errors, handleSubmit } = useForm({
+    mode: "onBlur"
+  });
+  
+  const onSubmit = async (data, e) => {
+    e.preventDefault();
+    console.log(data);
+  };
+
   return (
     <>
       <div className="topbar">
@@ -16,14 +27,11 @@ const Login = () => {
           className="navbar navb-color"
         >
           <Container className="cunt">
-            <Navbar.Brand href="#home" style={{ color: "#66757f !important" }}>
-              <FontAwesomeIcon icon={faTwitter} /> Home
-            </Navbar.Brand>
+            <li style={{ color: "#66757f !important", listStyleType: "none" }}>
+              <FontAwesomeIcon icon={faTwitter} style={{ color: "#1da1f2"}}/> <Link to="/" style={{color: "rgba(0,0,0,.5)", textDecoration: "none"}}>Home</Link>
+            </li>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="mr-auto">
-                <Nav.Link href="#pricing">About</Nav.Link>
-              </Nav>
               <Nav></Nav>
             </Navbar.Collapse>
           </Container>
@@ -31,54 +39,59 @@ const Login = () => {
       </div>
       <section className="login-section">
         <div className="page-canvas">
-          <div class="signin-wrapper" data-login-message="">
+          <div className="signin-wrapper" data-login-message="">
             <h1>Log in to Twitter</h1>
             <form
-              class="t1-form clearfix signin js-signin"
-              method="post"
+              className="t1-form clearfix signin js-signin"
+              onSubmit={handleSubmit(onSubmit)}
             >
               <fieldset>
-                <div class="clearfix field">
+                <div className="clearfix field">
                   <input
-                    class="js-username-field email-input js-initial-focus"
-                    type="text"
-                    name="session[username_or_email]"
-                    autocomplete="on"
-                    value=""
+                    className="js-username-field email-input js-initial-focus"
+                    type="email"
+                    name="email"
                     placeholder="Phone, email or username"
+                    required
+                    ref={register({
+                      required: true,
+                      pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                      maxLength: 100
+                    })}
                   />
                 </div>
-                <div class="clearfix field">
+                <div className="clearfix field">
                   <input
-                    class="js-password-field js-initial-focus"
+                    className="js-password-field js-initial-focus"
                     type="password"
-                    name="session[password]"
+                    name="password"
                     placeholder="Password"
+                    required
+                    ref={register({ required: true })}
                   />
                 </div>
               </fieldset>
 
-              <div class="captcha js-captcha"></div>
-              <div class="clearfix">
+              <div className="captcha js-captcha"></div>
+              <div className="clearfix">
             <button
                   type="submit"
-                  class="submit EdgeButton EdgeButton--primary EdgeButtom--medium"
+                  className="submit EdgeButton EdgeButton--primary EdgeButtom--medium"
                 >
                   Log in
                 </button>
 
-                <div class="subchck">
-                  <label class="t1-label remember">
+                <div className="subchck">
+                  <label className="t1-label remember">
                     <input
                       type="checkbox"
-                      value="1"
                       name="remember_me"
-                      checked="checked"
+  
                     />
                     Remember me
-                    <span class="separator">·</span>
+                    <span className="separator">·</span>
                     <a
-                      class="forgot"
+                      className="forgot"
                       href="/account/begin_password_reset"
                       rel="noopener"
                     >
@@ -86,8 +99,10 @@ const Login = () => {
                     </a>
                   </label>
                 </div>
+               
               </div>
             </form>
+            <small> New to Twitter? <Link to="/i/flow/signup">Sign up now »</Link></small>
           </div>
         </div>
       </section>

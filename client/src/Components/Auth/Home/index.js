@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"
 import "./home.css";
 
-const Login = () => {
+const Login = ({ history }) => {
   return (
     <>
       <div className="main-container">
@@ -21,17 +22,15 @@ const Login = () => {
             </div>
           </div>
         </div>
-        <div className="right">
+        <div className="right" style={{background: "#fff"}}>
           <div className="join-box">
             <span className="icon bird"></span>
-            <button id="login-button" className="float-right mt-3">
-              Log in
-            </button>
+             <Link to="/login" style={{ textDecoration: "none"}}>   <button id="login-button" className="float-right mt-3">Log in</button></Link>
             <h1>See what's happening in the world right now</h1>
             <h2>Join Twitter today.</h2>
             <div className="signup-login">
-              <button id="sign-up">Sign Up</button>
-              <button id="login">Log in</button>
+              <button id="sign-up" onClick={()=> history.push("/i/flow/signup")}>Sign Up</button>
+              <Link to="/login" style={{ textDecoration: "none"}}>    <button id="login">Log in</button></Link>
             </div>
           </div>
         </div>

@@ -5,6 +5,11 @@ url("https://fonts.googleapis.com/css?family=Prompt");
   padding:0;
   box-sizing:border-box;
 }
+
+.sesde{
+width: 200px;
+}
+
 body,html{
   width:100vw;
   height:100%;
@@ -114,6 +119,39 @@ body,html{
 .forgot-pass a:hover{
   text-decoration:underline;
 }
+
+#Sign-up-button{
+
+  width: 100%;
+    padding: .5em;
+    margin: .5em 0;
+    border-radius: 100px;
+    border: none;
+    font-weight: 400;
+    cursor: pointer;
+    font-size: 14px;
+    
+  /* align-self:flex-start;
+  border-radius:100px;
+  border:1px solid #25aafc;
+  background-color:#fff;
+  border: 1px solid #1da1f2;
+  color: #1da1f2;
+  cursor:pointer;
+  transition: all .2s ease-in-out;
+  height: 45px;
+  line-height: 20px;
+  border-radius: 100px;
+  box-shadow: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: lighter;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap; */
+}
 #login-button{
   align-self:flex-start;
   border-radius:100px;
@@ -135,9 +173,8 @@ body,html{
   position: relative;
   text-align: center;
   white-space: nowrap;
-
-
 }
+
 #login-button:hover{
   background-color:rgba(36, 164, 242, .1);
 }
