@@ -13,40 +13,63 @@ const ModalSignUp = () => {
     name: '',
     email: ''
   });
+
   const [isShowEmailError, updateShowEmailError ] = useState(false);
+
+  const [isShowNameError, updateShowNameError ] = useState(false);
+
+  const [isEmailVerified, updateIsEmailVerified ] = useState(false);
 
   const { email,  name } = formData;
 
-  const onCloseModal = () => {
-    setModal(true);
-  };
+  const onCloseModal = () => setModal(true);
 
-  const onChange = e =>
-  setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const verifyEmail = async() => {
-  const res  = await axios.post("https://us-central1-freecodecampapp.cloudfunctions.net/api/verifyEmail");
-  console.log(res)  
+
+  const  { data }  = await axios.post("https://us-central1-freecodecampapp.cloudfunctions.net/api/verifyEmail");
+  const {valid, msg} = data;
+  return {valid, msg}
+
+}
+
+const testEmail =    /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+
+
+const enableOrDisableButton = (valid, msg) => {
+
+  if(valid && msg === "Email can be used" ) {
+    updateIsEmailVerified(true);
+    if(name.trim().length) setNextButtonDisabled(false);
+  }
+  
+  if(!valid && msg === "Email has already been taken.") setNextButtonDisabled(true);
+
 }
 
   const verifyEmailValidity = async() => {
-    console.log("pressed");
-    const testEmail =    /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-    if (!testEmail.test(email)){
-        return updateShowEmailError(true);
-    }
-    updateShowEmailError(false);
-    const { data }  = await axios.post("https://us-central1-freecodecampapp.cloudfunctions.net/api/verifyEmail");
-    const {valid, msg} = data;
- 
-    if(valid && msg === "Email can be used"){
-        setNextButtonDisabled(true);
-    }
 
-    if(!valid && msg === "Email has already been taken."){
-        setNextButtonDisabled(false);
-    }
+    if (!testEmail.test(email)) {
+      setNextButtonDisabled(true);
+      return updateShowEmailError(true);
+    } 
+
+    updateShowEmailError(false);
+
+    const {valid, msg} = await verifyEmail();
+
+    return enableOrDisableButton(valid, msg);
+    
 }
+
+const verifyNameAndEmailValidity = async() => {
+
+  if (!name.trim().length) setNextButtonDisabled(true);
+  if (name.trim().length && isEmailVerified) return setNextButtonDisabled(false);
+
+}
+
 
   return (
     <>
@@ -85,6 +108,10 @@ const ModalSignUp = () => {
                name="name"
                value={name}
                onChange={e => onChange(e)}
+               onKeyUp={verifyNameAndEmailValidity}
+               onBlur={ ()=>{
+                name.trim().length ?  updateShowNameError(false) : updateShowNameError(true)
+               }}
                 />
             </Form.Group> 
             <br/>
