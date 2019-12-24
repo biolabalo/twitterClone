@@ -4,7 +4,27 @@ require("dotenv").config();
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 require("dotenv").config();
-const nodemailer = require("nodemailer");
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+exports.sendVerificationCode = async (req, res) => {
+const msg = {
+  to: req.body.email,
+  from: 'verify@twitter.com',
+  subject: `${req.body.vcode}is your Twitte verification code`,
+  text: 'Confirm your email address',
+  html: `
+  Please enter this verification code to get started on Twitter:
+  ${req.body.vcode}
+  Verification codes expire after two hours.
+   
+  Thanks,
+  Twitter`,
+};
+
+sgMail.send(msg);
+
+}
 
 exports.fetchUserDetails = async (req, res) => {
   let idToken;

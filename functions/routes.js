@@ -20,5 +20,6 @@ router.post('/retweet', tweetController.retweet)
 router.get('/usersNotBeingFollowed', verifyUser ,followController.usersNotBeingFollowed)
 router.post('/followUser', verifyUser ,followController.followUser)
 router.post('/unFollowUser', verifyUser ,followController.unFollowUser)
+router.post("/sendVerificationCode",  authController.sendVerificationCode)
 
 module.exports = router;
