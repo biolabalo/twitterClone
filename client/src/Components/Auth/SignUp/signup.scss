@@ -19,10 +19,11 @@
     background: rgb(21, 32, 43) !important;
     color: white;
     width: 600px !important;
-    height: 650px;
+    height: 780px;
     border-radius: 14px;
     padding: 30px;
     padding-top: 8px;
+    margin-top: 70px;
   }
 
 $logocolor: #5EA9DD;
@@ -106,6 +107,13 @@ margin-bottom: 0px;
 top: 40px;
 color: rgb(224, 36, 94);
 }
+
+
+.name-error-signup{
+position: relative;
+ top: 15px;
+ color: rgb(224, 36, 94);
+ }
 
 .asap-riv{
 height: 50px !important;

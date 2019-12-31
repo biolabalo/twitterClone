@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState }  from "react";
 import ProfileIcon from "../../assets/png/default_profile_normal.png";
 import { Link }  from "react-router-dom"
-const LeftSide = () => {
+import firebase from "../../firebaseConfig";
+import { withRouter }  from "react-router-dom";
+import { toast }  from "react-toastify"
+import ColorEngine from "../Home/colorEngineModal";
+
+
+const LeftSide = ({ history, userData }) => {
+  const [open, setModal] = useState(false);
+
+
   return (
     <>
       {" "}
@@ -103,19 +112,40 @@ const LeftSide = () => {
                     <path d="M17 8.64H7c-.414 0-.75-.337-.75-.75s.336-.75.75-.75h10c.414 0 .75.335.75.75s-.336.75-.75.75zm0 4.11H7c-.414 0-.75-.336-.75-.75s.336-.75.75-.75h10c.414 0 .75.336.75.75s-.336.75-.75.75zm-5 4.11H7c-.414 0-.75-.335-.75-.75s.336-.75.75-.75h5c.414 0 .75.337.75.75s-.336.75-.75.75z"></path>
                   </g>
                 </svg>
-                <span>Lists</span>
+                <span
+                onClick={ ()=>{
+                  setModal(true)
+                }}
+                >
+                  
+                  Display</span>
               </div>
             </a>
             <a href="#" className="a-container">
               <div className="a">
                 <div className="avatar">
+                  { userData && userData.url 
+                  ?
+                  <img src={userData.url} alt="avatar" className="header-img" />
+                  :
                   <img src={ProfileIcon} alt="avatar" className="header-img" />
+                  }
+                
                 </div>
                 <span>Profile</span>
               </div>
             </a>
             <a href="#" className="a-container">
-              <div className="a">
+              <div className="a"
+              onClick={
+                ( ) => {
+                  firebase.auth().signOut().then(function() {
+                  return  history.push("/login")
+                  }).catch(function(error) {
+                    toast.error("failed to logout")
+                  });
+                }
+              }>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -126,7 +156,7 @@ const LeftSide = () => {
                     <path d="M12 22.75C6.072 22.75 1.25 17.928 1.25 12S6.072 1.25 12 1.25 22.75 6.072 22.75 12 17.928 22.75 12 22.75zm0-20C6.9 2.75 2.75 6.9 2.75 12S6.9 21.25 12 21.25s9.25-4.15 9.25-9.25S17.1 2.75 12 2.75z"></path>
                   </g>
                 </svg>
-                <span>More</span>
+                <span>Logout</span>
               </div>
             </a>
           </div>
@@ -146,8 +176,12 @@ const LeftSide = () => {
           </div>
         </div>
       </header>
+      <ColorEngine 
+      setModal={setModal} 
+      open={open}
+      />
     </>
   );
 };
 
-export default LeftSide;
+export default withRouter(LeftSide);

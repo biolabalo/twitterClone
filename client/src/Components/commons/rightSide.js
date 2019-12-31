@@ -157,7 +157,7 @@ const RightSide = () => {
                       </a>
                       <a href="#demo" className="hashtag">
                         <s>#</s>
-                        <span>twitter</span>
+                        <span>BuzzMe</span>
                         &nbsp;
                       </a>
                     </p>

@@ -8,7 +8,20 @@
     --dark-theme-primary-bg: rgba(29, 161, 242, 0.1);
     --primary-border-color: rgba(255, 255, 255, 0.2);
   }
-  
+
+  .new-next-btn{
+    margin: 0 auto;
+    display: block;
+  }
+
+.handle-error{
+  position: relative;
+  color: #e0245e;
+}
+  .gfhfb{
+-webkit-appearance: none;
+appearance: none;
+  }
   /*----- Theme CSS -----*/
   .default-theme {
     color: var(--default-theme-color);
@@ -19,6 +32,16 @@
     background-color: var(--dark-theme-bg);
   }
   
+.newUserImage{
+  background-image: url("https://ton.twitter.com/responsive-web/rweb-welcome-illustration-m6.png");
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: auto;
+  height: 500px;
+}
+
+
   /*----- General CSS -----*/
  main{
 

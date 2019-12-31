@@ -1,24 +1,15 @@
-import React, { useEffect, useState } from "react";
-import "./signup.scss";
-import ModalSignUp from "./ModalSignUp";
+import React  from "react";
+import "../Auth/SignUp/signup.scss";
 
-const SignUp = () => {
-  const [isLoading, setIsLoading] = useState(true);
+const Isloading = () => {
 
-  useEffect(() => {
-      setTimeout(()=>{
-      setIsLoading(false);
-      }, 3000)
-      return () => {
 
-      };
-  }, [])
 
   return (
     <>
       <div className="Signup">
         <div className="wrapper"  style={ { background: "rgb(21, 32, 43)" }}>
-          {isLoading ? (
+       
             <svg width="200" height="200" viewBox="0 0 216 216">
               <path
                 id="twitter"
@@ -30,12 +21,9 @@ const SignUp = () => {
                 strokeDasharray="1100 1100"
               />
             </svg>
-          ) : (
-         <ModalSignUp/>
-          )}
         </div>
       </div>
     </>
   );
 };
-export default SignUp;
+export default Isloading ;

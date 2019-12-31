@@ -99,21 +99,29 @@ fieldset {
   max-width: 280px;
   margin-right: 10px;
 }
-
-.js-initial-focus{
+.login-error{
+  border: 1px solid red !important;
   transition: background .2s linear;
-  border: 1px solid #e6ecf0;
   padding: 4px;
   font-size: 14px;
-line-height: 20px;
+ line-height: 20px;
+}
+.js-initial-focus{
+  transition: background .2s linear;
+  padding: 4px;
+  font-size: 14px;
+  line-height: 20px;
 }
 
+
+
 .js-initial-focus:focus{
-  outline: 0;
-color:
-#14171a;
-border-color:
-rgba(0,132,180,0.5);
+
+transition: background .2s linear;
+padding: 4px;
+font-size: 14px;
+line-height: 20px;
+outline: 0;
 }
 
 .EdgeButton, .EdgeButton:visited {
