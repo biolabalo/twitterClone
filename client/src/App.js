@@ -10,14 +10,14 @@ import "react-toastify/dist/ReactToastify.css";
 import firebase from "./firebaseConfig";
 import NetworkError from "./Components/404/NetworkError";
 import NotFoundPage from "./Components/404/NotFoundPage";
-
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
+const db = firebase.firestore();
 const auth = firebase.auth();
 
 function App() {
 
- 
+  document.getElementById("root").style.background = "#000";
 
   const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setAuthentication] = useState(false);
@@ -31,8 +31,16 @@ function App() {
         if (user) {
           setIsLoading(false);
           setAuthentication(true);
-          // var uid = user.uid;
-          // var providerData = user.providerData;
+       db.collection("user")
+      .doc(`${firebase.auth().currentUser.email}`)
+      .onSnapshot(function(doc) {
+        if (doc.exists) {
+          document.getElementById("root").style.background = doc.data().userTheme.backgroundColor;
+        
+        } else {
+        
+        }
+      });
         } else {
           setIsLoading(false);
           setAuthentication(false);
@@ -45,21 +53,22 @@ function App() {
     }
   }, []);
 
+
   let style;
 
-  switch (window.location.pathname.split("/").pop()) {
-    case "login":
-      style = { background: "#e6ecf0" };
-      break;
-    case "signup":
-      style = { background: "rgb(21, 32, 43)" };
-      break;
-    case "verify":
-      style = { background: "rgb(21, 32, 43)" };
-      break;
-    default:
-      style = { background: "white !important" };
-  }
+  // switch (window.location.pathname.split("/").pop()) {
+  //   case "login":
+  //     style = { background: "#e6ecf0" };
+  //     break;
+  //   case "signup":
+  //     style = { background: "rgb(21, 32, 43)" };
+  //     break;
+  //   case "verify":
+  //     style = { background: "rgb(21, 32, 43)" };
+  //     break;
+  //   default:
+  //     style = { background: "white !important" };
+  // }
 
 if(isNetworkError){
   return <NetworkError />
@@ -88,7 +97,7 @@ if(isLoading){
   );
 
   return (
-    <div className="App" style={style}>
+    <div className="App">
       <Router>
         <ToastContainer autoClose={false} />
         {routes}

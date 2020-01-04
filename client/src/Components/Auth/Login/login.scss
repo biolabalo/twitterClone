@@ -1,6 +1,9 @@
-#root, .App{
-  height: 100%;
-}
+// #root, .App{
+//    top: 0;
+//    bottom: 0;
+//    position: relative;
+//    height: 100vh;
+// }
 
 .topbar {
   backface-visibility: hidden;
@@ -14,6 +17,13 @@
   z-index: 1000;
 }
 
+.popover-header{
+  cursor: pointer
+}
+.popover-header:hover{
+ background: rgb(24, 21, 28) !important;
+ color: white !important
+}
 .navb-color{
 background:#fff !important;
 height: 46px;

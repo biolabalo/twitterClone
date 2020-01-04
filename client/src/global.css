@@ -1,3 +1,18 @@
 .App {
   font-family: 'Montserrat', sans-serif;
 }
+
+html,body{
+ 
+  height:100vh;
+
+}
+
+
+#root{
+  min-height: 100%;
+}
+
+.dot{
+  vertical-align: text-bottom;
+}

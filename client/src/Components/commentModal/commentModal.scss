@@ -1,0 +1,23 @@
+.dain-avatar-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.dain-avatar-img .img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+
+.dain-avatar-hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+    height: 100px;
+    background: white;
+    width: 2px;
+    margin: 0 auto;
+}

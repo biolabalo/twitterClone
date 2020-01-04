@@ -5,43 +5,29 @@ import { toast } from "react-toastify";
 
 const db = firebase.firestore();
 
-const style = {
-  width: "40px",
-  height: "40px",
-  backgroundColor: "yellow"
-};
 
-const ColorEngine = ({ step, open, setModal, updateStep }) => {
+const ColorEngine = ({ step, open, setModal }) => {
   const [url, setUrl] = useState("");
 
-  const addBackgroundColorToFireBase = async e => {
-  
+  const updateColorInFireBase = async color => {
+    db.collection("user")
+      .doc(`${firebase.auth().currentUser.email}`)
+      .update({ userColor: color })
+      .then(function() {})
+      .catch(function(error) {
+        toast.error("failed to update color");
+      });
+  };
 
-    // db.collection("user")
-    //   .doc(`${firebase.auth().currentUser.email}`)
-    //   .set({
-    //     fullName,
-    //     Bio,
-    //     Handle: `@${Handle}`,
-    //     gender,
-    //     url,
-    //     id: firebase.auth().currentUser.uid
-    //   })
-    //   .then(function() {
-    //     setModal(false);
-    //     db.collection("userHandle")
-    //       .doc(`@${Handle}`)
-    //       .set({
-    //         Handle: `@${Handle}`,
-    //         id: firebase.auth().currentUser.uid
-    //       })
-    //       .catch(function(error) {
-    //         toast.error("failed to save user handle")
-    //       });
-    //   })
-    //   .catch(function(error) {
-    //     toast.error("failed to save user")
-    //   });
+
+  const updateThemeInFireBase = async userTheme => {
+    db.collection("user")
+      .doc(`${firebase.auth().currentUser.email}`)
+      .update({ userTheme })
+      .then(function() {})
+      .catch(function(error) {
+        toast.error("failed to update color");
+      });
   };
 
   return (
@@ -54,20 +40,18 @@ const ColorEngine = ({ step, open, setModal, updateStep }) => {
             "rgb(255, 173, 31)",
             " rgb(224, 36, 94)",
             "rgb(23, 191, 99)"
-          ].map((backgroundColor, index) => {
+          ].map((color, index) => {
             return (
-              <div className="col"
-              key={index}
-              >
+              <div className="col" key={index}>
                 <div
                   className="rounded-circle"
                   style={{
                     width: "40px",
                     height: "40px",
-                    backgroundColor,
+                    backgroundColor: color,
                     cursor: "pointer"
                   }}
-                  onClick={() => addBackgroundColorToFireBase(backgroundColor)}
+                  onClick={() => updateColorInFireBase(color)}
                 ></div>
               </div>
             );
@@ -75,17 +59,30 @@ const ColorEngine = ({ step, open, setModal, updateStep }) => {
         </div>
       </div>
       <div className="setBackGroundColor mt-5">
-      <h3>Background Color </h3>
+        <h3>Background Color </h3>
         <div className="row mt-5">
           {[
-             {color: "black", backgroundColor: "white", title: "white"},
-             {color: "white", backgroundColor:"rgb(0, 0, 0)",title: "Lights out"},
-             { backgroundColor:"rgb(21, 32, 43)", color: "white",title: "Dim"}
+            { color: "black",
+              backgroundColor: "white",
+              title: "white",
+              borderColor: "rgb(230,236,240)"
+            
+            },
+            {
+              color: "white",
+              backgroundColor: "rgb(0, 0, 0)",
+              title: "Lights out",
+              borderColor: "rgb(32,35,39)"
+            },
+            { 
+             color: "white", 
+             backgroundColor: "rgb(21, 32, 43)",
+             title: "Dim" ,
+             borderColor: "rgb(37,51,65)"
+            }
           ].map((each, index) => {
             return (
-              <div className="col"
-              key={index}
-              >
+              <div className="col" key={index}>
                 <div
                   className=""
                   style={{
@@ -98,9 +95,9 @@ const ColorEngine = ({ step, open, setModal, updateStep }) => {
                     cursor: "pointer",
                     textAlign: "center"
                   }}
-                  onClick={() => addBackgroundColorToFireBase(each)}
+                  onClick={() => updateThemeInFireBase(each)}
                 >
-                    {each.title}
+                  {each.title}
                 </div>
               </div>
             );

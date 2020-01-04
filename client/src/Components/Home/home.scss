@@ -2,17 +2,41 @@
     --primary-color: #1da1f2;
     --btn-bg: #1a91da;
     --default-theme-bg: #e8f5fe;
-    --default-theme-color: #000;
-    --dark-theme-bg: #000;
+    // --default-theme-color: #000;
+     --dark-theme-bg: #000;
     --dark-theme-color: #d9d9d9;
     --dark-theme-primary-bg: rgba(29, 161, 242, 0.1);
     --primary-border-color: rgba(255, 255, 255, 0.2);
   }
 
+.main-container .spinner-border{
+display: block;  
+margin: 0 auto;
+margin-top: 30px;
+border:   .25em solid rgb(31,161,242);
+   border-right-color: aliceblue
+}
   .new-next-btn{
     margin: 0 auto;
     display: block;
   }
+
+
+.r-1ldzwu0 {
+  animation-timing-function: linear;
+}
+
+.r-127358a {
+    animation-name: r-9p3sdl;
+}
+
+.r-1muvv40 {
+   animation-iteration-count: infinite;
+}
+
+.r-17bb2tj {
+ animation-duration: 0.75s;
+}
 
 .handle-error{
   position: relative;
@@ -29,7 +53,8 @@ appearance: none;
   }
   .dark-theme {
     color: var(--dark-theme-color);
-    background-color: var(--dark-theme-bg);
+    // background-color: var(--dark-theme-bg);
+    height: 100%;
   }
   
 .newUserImage{
@@ -91,7 +116,6 @@ appearance: none;
     height: 100%;
   }
   svg {
-    fill: var(--dark-theme-color);
     display: block;
   }
   .a:hover svg,
@@ -133,7 +157,6 @@ appearance: none;
   }
   .btn-solid {
     color: #fff;
-    background-color: var(--primary-color);
   }
   .btn-regular {
     color: var(--btn-bg);
@@ -265,16 +288,13 @@ appearance: none;
     width: 1.4rem;
     height: 1.4rem;
   }
-  main svg {
-    fill: var(--primary-color);
-  }
+ 
   
   /*----- Main-section CSS -----*/
   section {
     width: 600px;
     height: 100%;
-    border-left: solid var(--primary-border-color) 1px;
-    border-right: solid var(--primary-border-color) 1px;
+
   }
   /*- section-header -*/
   .section-header {
@@ -283,7 +303,6 @@ appearance: none;
     justify-content: space-between;
     font-size: 19px;
     font-weight: bold;
-    border-bottom: solid var(--primary-border-color) 1px;
   }
   .home-refresh {
     width: 100%;
@@ -301,7 +320,6 @@ appearance: none;
     padding: 0 15px;
     display: flex;
     justify-content: flex-start;
-    border-bottom: solid rgba(255, 255, 255, 0.1) 10px;
   }
   .avatar-container {
     margin-right: 0 5px;
@@ -315,6 +333,15 @@ appearance: none;
   .input {
     padding: 0 8px;
   }
+  .nopacity{
+    opacity: 0.3
+  }
+  .opacity{
+    opacity: 1
+  }
+  .text-counter-container{
+    width: 40px;
+  }
   .input textarea {
     resize: none;
     width: 100%;
@@ -322,8 +349,6 @@ appearance: none;
     display: block;
     font-size: 19px;
     border: none;
-    color: var(--dark-theme-color);
-    background-color: var(--dark-theme-bg);
     overflow: hidden;
   }
   .tweet-input-utility {
@@ -361,7 +386,6 @@ appearance: none;
   .tweet-add .a {
     padding: 4px 4px;
     margin: 0;
-    border: solid var(--primary-color) 1px;
   }
   .tweet-add svg {
     width: 1.1rem;
@@ -487,7 +511,6 @@ appearance: none;
   .stream-footer-container svg {
     width: 18px;
     height: 18px;
-    fill: var(--dark-theme-color);
   }
   .tweet-action {
     min-width: 80px;

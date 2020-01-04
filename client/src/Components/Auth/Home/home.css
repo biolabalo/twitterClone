@@ -10,12 +10,7 @@ url("https://fonts.googleapis.com/css?family=Prompt");
 width: 200px;
 }
 
-body,html{
-  width:100vw;
-  height:100%;
-  font-family: sans-serif;
-  overflow-x:hidden;
-}
+
 #login-button, #sign-up, #login{
   font-family: "Prompt";
   letter-spacing:1px;

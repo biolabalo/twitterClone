@@ -38,7 +38,14 @@ const NewUserModal = ({ step, open, setModal, updateStep }) => {
         Handle: `@${Handle}`,
         gender,
         url,
-        id: firebase.auth().currentUser.uid
+        id: firebase.auth().currentUser.uid,
+        userColor: "rgb(255, 173, 31)",
+        userTheme: { 
+          color: "white", 
+          backgroundColor: "rgb(21, 32, 43)",
+          title: "Dim" ,
+          borderColor: "rgb(37,51,65)"
+         }
       })
       .then(function() {
         setModal(false);
