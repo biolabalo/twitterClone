@@ -120,9 +120,7 @@ const ModalSignUp = ({ history }) => {
     )
       return;
     setIsLoadingView(true);
-
     const vcode = Math.floor(1000 + Math.random() * 9000);
-
     db.collection("unVerifiedUsersEmail")
       .doc(email)
       .set({
