@@ -32,7 +32,7 @@ const LeftSide = ({ history, userData }) => {
           </div>
           <div className="header-nav">
             <Link
-              to="/"
+              to="/home"
               className="a-container"
               style={{
                 color: userData && userData.userColor ? userData.userColor : ""

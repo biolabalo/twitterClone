@@ -16,16 +16,49 @@ const CommentModal = ({
   tweetSelectedForComment,
   userData
 }) => {
+
   const [url, setUrl] = useState("");
   const [comment, setComment] = useState("");
 
-  const postComment = async userTheme => {
-    db.collection("user")
-      .doc(`${firebase.auth().currentUser.email}`)
-      .update({ userTheme })
-      .then(function() {})
-      .catch(function(error) {
-        toast.error("failed to update color");
+  const postComment = async () => {
+    const increment = firebase.firestore.FieldValue.increment(1);
+    const decrement = firebase.firestore.FieldValue.increment(-1);
+
+    const tweetCountRef = db.collection("tweets").doc(tweetSelectedForComment.id);
+    const commentsDocRef = db.collection("comments").doc(`${Math.random()}`);
+
+    const batch = db.batch();
+
+    // check if tweet exists
+    setCommentModal(false);
+    setComment("");
+
+    db.collection("likes")
+      .where("tweetId", "==", tweetSelectedForComment.id)
+      .where("userWhoLiked", "==", firebase.auth().currentUser.uid)
+      .get()
+      .then(snapshot => {
+        if (snapshot.empty) {
+          // No comment yet create comment
+          batch.set(commentsDocRef, {
+            userWhoCommented: firebase.auth().currentUser.uid,
+            tweetId :  tweetSelectedForComment.id,
+            comment,
+            userData
+          });
+          batch.set(tweetCountRef, { comment: increment }, { merge: true });
+          batch.commit();
+        }
+
+        snapshot.docs.forEach(document => {
+          if (document.exists) {
+            // Tweet exists delete the like doc and decrement count
+            batch.delete(db.collection("comments").doc(document.id));
+            batch.set(tweetCountRef, {  comment: decrement }, { merge: true });
+            batch.commit();
+          } else {
+          }
+        });
       });
   };
 
@@ -34,7 +67,7 @@ const CommentModal = ({
   };
 
   return (
-    <main className="modal-wrapper" style={{ height: "200px" }}>
+    <main className="modal-wrapper">
       <Modal
         open={openCommentModal}
         onClose={() => setCommentModal(false)}
@@ -55,11 +88,11 @@ const CommentModal = ({
               {tweetSelectedForComment.fullName}
             </strong>
             {tweetSelectedForComment.Handle} &nbsp;
-            <span className="dot">.</span>
+            <span className="dotz">.</span>
             <span className="timestamp">
               <small>
                 {" "}
-                {moment(`${tweetSelectedForComment.createdAt}`).fromNow()}
+                {/* {moment(`${tweetSelectedForComment.createdAt}`).fromNow()} */}
               </small>
             </span>
             <div className="tweet-text-container">

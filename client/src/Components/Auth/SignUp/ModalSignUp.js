@@ -148,7 +148,7 @@ const ModalSignUp = ({ history }) => {
         }
       })
       .catch(function(error) {
-        console.log("b");
+    
       });
   };
 

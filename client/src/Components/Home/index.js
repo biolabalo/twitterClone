@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./home.scss";
 import moment from "moment";
 import { Form } from "react-bootstrap";
 import firebase from "../../firebaseConfig";
+import { Link } from "react-router-dom";
 import LeftSide from "../commons/leftSide";
 import StyledButton from "../commons/StyledButton";
-import ImageUpload from "./imageUpload";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import NewUserModal from "./modal";
@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import CommentModal from "../commentModal";
 const db = firebase.firestore();
 
-const Home = () => {
+const Home = ({ history }) => {
   const [open, setModal] = useState(false);
   const [step, updateStep] = useState(1);
   const [userData, setUserData] = useState();
@@ -25,7 +25,7 @@ const Home = () => {
   const [tweetsLikedByUser, setTweetLikedByUsers] = useState("");
   const [UserRetweets, setUserRetweets] = useState("");
   const [openCommentModal, setCommentModal] = useState(false);
-  const [tweetSelectedForComment, setTweetSelectedForComment] = useState({})
+  const [tweetSelectedForComment, setTweetSelectedForComment] = useState({});
 
   // show modal if user is not registered
   useEffect(() => {
@@ -239,30 +239,35 @@ const Home = () => {
 
   if (!isTweetsLoading && tweetsOnTime) {
     TweetsView = tweetsOnTime.map((eachTweet, index) => (
-      <div 
-      className="stream-container"
-       key={index}
-       style={
-        userData && userData.userTheme
-          ? {
-              borderBottom: `1px solid ${userData.userTheme.borderColor}`
-            }
-          : {
-              borderBottom: `1px solid black`
-            }
-      }
-       >
+      <section
+        onClick={e => {
+          typeof e.target.className === "string"
+            ? history.push(`/status/${eachTweet.id}`)
+            : e.preventDefault();
+        }}
+        className="stream-container"
+        key={index}
+        style={
+          userData && userData.userTheme
+            ? {
+                borderBottom: `1px solid ${userData.userTheme.borderColor}`
+              }
+            : {
+                borderBottom: `1px solid black`
+              }
+        }
+      >
         <div className="stream">
           {UserRetweets.includes(eachTweet.id) ? (
             <div className="context-container">
               <p className="context">
-                <svg 
-                viewBox="0 0 24 24"
-                style={
-                  UserRetweets.includes(eachTweet.id)
-                    ? { fill: "rgb(23,191,99)" }
-                    : { fill: "#d9d9d9" }
-                }
+                <svg
+                  viewBox="0 0 24 24"
+                  style={
+                    UserRetweets.includes(eachTweet.id)
+                      ? { fill: "rgb(23,191,99)" }
+                      : { fill: "#d9d9d9" }
+                  }
                 >
                   <g>
                     <path d="M23.77 15.67c-.292-.293-.767-.293-1.06 0l-2.22 2.22V7.65c0-2.068-1.683-3.75-3.75-3.75h-5.85c-.414 0-.75.336-.75.75s.336.75.75.75h5.85c1.24 0 2.25 1.01 2.25 2.25v10.24l-2.22-2.22c-.293-.293-.768-.293-1.06 0s-.294.768 0 1.06l3.5 3.5c.145.147.337.22.53.22s.383-.072.53-.22l3.5-3.5c.294-.292.294-.767 0-1.06zm-10.66 3.28H7.26c-1.24 0-2.25-1.01-2.25-2.25V6.46l2.22 2.22c.148.147.34.22.532.22s.384-.073.53-.22c.293-.293.293-.768 0-1.06l-3.5-3.5c-.293-.294-.768-.294-1.06 0l-3.5 3.5c-.294.292-.294.767 0 1.06s.767.293 1.06 0l2.22-2.22V16.7c0 2.068 1.683 3.75 3.75 3.75h5.85c.414 0 .75-.336.75-.75s-.337-.75-.75-.75z"></path>
@@ -277,26 +282,26 @@ const Home = () => {
 
           <div className="content">
             <div className="stream-header-container">
-              <a href="#demo">
+              <span className="jksfsxf">
                 <div className="main-avatar">
                   <img src={eachTweet.url} className="main-avatar-img" />
                 </div>
                 <div className="fullname-container">
                   <strong className="fullname">{eachTweet.fullName}</strong>
-                  {/* <span className="user-badge">
-      <svg
-        viewBox="0 0 24 24"
-        aria-label="Verified account"
-        className="main-img"
-      >
-        <g>
-          <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"></path>
-        </g>
-      </svg>
-    </span> */}
+                  <span className="user-badge">
+                    <svg
+                      viewBox="0 0 24 24"
+                      aria-label="Verified account"
+                      className="main-img"
+                    >
+                      <g>
+                        <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"></path>
+                      </g>
+                    </svg>
+                  </span>
                 </div>
                 <div className="userame">{eachTweet.Handle}</div>
-              </a>
+              </span>
               <div className="time">
                 <span className="dot">.</span>
                 <span className="timestamp">
@@ -328,9 +333,9 @@ const Home = () => {
                           viewBox="0 0 24 24"
                           className="main-img"
                           style={{ fill: "#d9d9d9" }}
-                          onClick={()=>{
+                          onClick={() => {
                             setTweetSelectedForComment(eachTweet);
-                            setCommentModal(true)
+                            setCommentModal(true);
                           }}
                         >
                           <g>
@@ -447,7 +452,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     ));
   }
 
@@ -774,12 +779,12 @@ const Home = () => {
         open={open}
         updateStep={updateStep}
       />
-       <CommentModal 
-       setCommentModal={setCommentModal}
-       openCommentModal={openCommentModal}
-       tweetSelectedForComment={tweetSelectedForComment}
-       userData={userData}
-         />
+      <CommentModal
+        setCommentModal={setCommentModal}
+        openCommentModal={openCommentModal}
+        tweetSelectedForComment={tweetSelectedForComment}
+        userData={userData}
+      />
     </>
   );
 };

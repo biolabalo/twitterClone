@@ -7,7 +7,6 @@ const db = firebase.firestore();
 
 
 const ColorEngine = ({ step, open, setModal }) => {
-  const [url, setUrl] = useState("");
 
   const updateColorInFireBase = async color => {
     db.collection("user")

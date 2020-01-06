@@ -10,7 +10,6 @@ const ImageUpload = ({ setUrl, url }) => {
   const [image, setImage] = useState(null);
   const [ progress, setProgress] = useState(0);
 
-
   const handleChange = e => {
     if (e.target.files[0]) {
       const image = e.target.files[0];
@@ -30,7 +29,7 @@ const ImageUpload = ({ setUrl, url }) => {
         setProgress(progress);
       },
       error => {
-        console.log(error);
+    
       },
       () => {
         uploadTask.snapshot.ref.getDownloadURL().then(function(url) {

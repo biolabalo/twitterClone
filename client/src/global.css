@@ -13,6 +13,8 @@ html,body{
   min-height: 100%;
 }
 
-.dot{
-  vertical-align: text-bottom;
+
+.stream-container:hover{
+background-color: rgb(245,248,250) !important;
+transition-duration: 0.2s;
 }

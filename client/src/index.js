@@ -4,7 +4,8 @@ import App from './App';
 import "./global.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as serviceWorker from './serviceWorker';
+import Store from './store';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render( <Store><App /></Store>, document.getElementById('root'));
 
 serviceWorker.unregister();
