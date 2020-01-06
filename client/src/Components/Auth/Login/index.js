@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./login.scss";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import useForm from "react-hook-form";
 import firebase from "../../../firebaseConfig";
+import setColor from "../../../setColor";
 
 const Login = ({ history }) => {
   const [isLoginError, setLoginError] = useState();
@@ -13,6 +14,14 @@ const Login = ({ history }) => {
   const { register, errors, handleSubmit } = useForm({
     mode: "onBlur"
   });
+
+
+  useEffect(() => {
+    setColor("#e6ecf0");
+    return () => {
+
+    };
+  }, [])
 
   const onSubmit = async (data, e) => {
     e.preventDefault();

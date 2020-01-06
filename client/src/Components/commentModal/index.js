@@ -17,7 +17,6 @@ const CommentModal = ({
   userData
 }) => {
 
-  const [url, setUrl] = useState("");
   const [comment, setComment] = useState("");
 
   const postComment = async () => {

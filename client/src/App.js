@@ -12,6 +12,7 @@ import NetworkError from "./Components/404/NetworkError";
 import NotFoundPage from "./Components/404/NotFoundPage";
 import SingleTweet from "./Components/singleTweet";
 import {  userContext } from "./store";
+import setColor from "./setColor";
 
 import {
   BrowserRouter as Router,
@@ -24,7 +25,7 @@ const db = firebase.firestore();
 const auth = firebase.auth();
 
 function App() {
-  document.getElementById("root").style.background = "#000";
+
 
   const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setAuthentication] = useState(false);
@@ -46,10 +47,7 @@ function App() {
             .onSnapshot(function(doc) {
               if (doc.exists) {
                 setUserData(doc.data());
-                document.getElementById(
-                  "root"
-                ).style.background = doc.data().userTheme.backgroundColor;
-              
+                setColor(doc.data().userTheme.backgroundColor)
               } else {
                 setUserData(null);
               }
@@ -67,21 +65,21 @@ function App() {
     }
   }, []);
 
-  // let style;
+  let style;
 
-  // switch (window.location.pathname.split("/").pop()) {
-  //   case "login":
-  //     style = { background: "#e6ecf0" };
-  //     break;
-  //   case "signup":
-  //     style = { background: "rgb(21, 32, 43)" };
-  //     break;
-  //   case "verify":
-  //     style = { background: "rgb(21, 32, 43)" };
-  //     break;
-  //   default:
-  //     style = { background: "white !important" };
-  // }
+  switch (window.location.pathname.split("/").pop()) {
+    case "login":
+      setColor("#e6ecf0");
+      break;
+    case "signup":
+      style = { background: "rgb(21, 32, 43)" };
+      break;
+    case "verify":
+      style = { background: "rgb(21, 32, 43)" };
+      break;
+    default:
+      style = { background: "white !important" };
+  }
 
   if (isNetworkError) {
     return <NetworkError />;

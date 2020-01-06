@@ -12,18 +12,24 @@ import NewUserModal from "./modal";
 import { Spinner, Popover, OverlayTrigger } from "react-bootstrap";
 import { toast } from "react-toastify";
 import CommentModal from "../commentModal";
+import {  LikesContext, RetweetsContext,  userContext } from "../../store";
+import setColor from "../../setColor";
 const db = firebase.firestore();
 
 const Home = ({ history }) => {
   const [open, setModal] = useState(false);
   const [step, updateStep] = useState(1);
-  const [userData, setUserData] = useState();
+
+  const [userData, setUserData] = useContext(userContext);
+  
   const [tweet, setTweet] = useState("");
   const [isTweetsLoading, setTweetsLoading] = useState(false);
   const [tweetsOnTime, setTimelineTweet] = useState([]);
   const [likedTweetLoading, setLikeTweet] = useState("");
-  const [tweetsLikedByUser, setTweetLikedByUsers] = useState("");
-  const [UserRetweets, setUserRetweets] = useState("");
+
+  const [tweetsLikedByUser, setTweetLikedByUsers] = useContext(LikesContext);
+  const [UserRetweets, setUserRetweets] = useContext(RetweetsContext);
+
   const [openCommentModal, setCommentModal] = useState(false);
   const [tweetSelectedForComment, setTweetSelectedForComment] = useState({});
 
@@ -36,6 +42,7 @@ const Home = ({ history }) => {
           setUserData(doc.data());
           setModal(false);
         } else {
+          setColor("#000")
           setModal(true);
         }
       });

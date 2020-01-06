@@ -21,7 +21,7 @@
     width: 600px !important;
     border-radius: 14px;
     padding: 30px;
-    padding-top: 8px;
+    padding-bottom: 108px;
     margin-top: 70px;
   }
 
@@ -96,14 +96,19 @@ margin-bottom: 0px;
     height: 30px;
     fill: aliceblue;
     text-align: center;
-    margin-left: 240px;
-    margin-right: 205px;
+    margin-left: 200px;
+    margin-right: 200px;
 
+}
+
+.siginup-spinner{
+  margin: 0 auto;
+  display: block !important;
 }
 
 .email-error-signup{
  position: relative;
-top: 40px;
+top: 38px;
 color: rgb(224, 36, 94);
 }
 
@@ -115,7 +120,6 @@ position: relative;
  }
 
 .asap-riv{
-height: 50px !important;
 border-top: none !important;
 border-left: none !important;
 border-right: none !important;

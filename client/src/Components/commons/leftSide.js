@@ -5,7 +5,7 @@ import firebase from "../../firebaseConfig";
 import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import ColorEngine from "../Home/colorEngineModal";
-
+import setColor from "../../setColor";
 const LeftSide = ({ history, userData }) => {
   const [open, setModal] = useState(false);
 
@@ -208,7 +208,8 @@ const LeftSide = ({ history, userData }) => {
                     .auth()
                     .signOut()
                     .then(function() {
-                      return history.push("/login");
+                      history.push("/login");
+                      return setColor("#e6ecf0");
                     })
                     .catch(function(error) {
                       toast.error("failed to logout");

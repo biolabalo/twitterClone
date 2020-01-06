@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./signup.scss";
 import Modal from "react-responsive-modal";
 import { withRouter } from "react-router-dom";
-import { Form } from "react-bootstrap";
+import { Form, Spinner } from "react-bootstrap";
 import StyledButton from "../../commons/StyledButton";
 import axios from "axios";
 import firebase from "../../../firebaseConfig";
@@ -15,6 +15,7 @@ const auth = firebase.auth();
 const ModalSignUp = ({ history }) => {
   const [isEmailVerificationLoading, setIsLoading] = useState(false);
   const [open, setModal] = useState(true);
+  const [isLoadingView, setIsLoadingView]  = useState(false)
   const [isNextButtonDisabled, setNextButtonDisabled] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
@@ -111,13 +112,14 @@ const ModalSignUp = ({ history }) => {
 
   //after filling name and used email show step 2 ; ENTER PASSWORD
   const showStep2 = () => {
+
     if (
       isEmailVerified === "notVerified" ||
       !name.trim().length ||
       isEmailVerificationLoading
     )
       return;
-    
+    setIsLoadingView(true);
 
     const vcode = Math.floor(1000 + Math.random() * 9000);
 
@@ -140,10 +142,12 @@ const ModalSignUp = ({ history }) => {
               headers: {}
             }
           );
+          setIsLoadingView(false);
           sessionStorage.setItem("unregistered_buzzme_user_email", email);
           history.push("/i/flow/verify");
           toast.success("A verification code has been sent to the email");
         } catch (err) {
+          setIsLoadingView(false);
           sessionStorage.removeItem("unregistered_buzzme_user_email");
         }
       })
@@ -161,7 +165,7 @@ const ModalSignUp = ({ history }) => {
 
   if (isEmailVerified === "notVerified") {
     EmailVerificationMessage = (
-      <small className="email-error-signup" style={{ top: "180px" }}>
+      <small className="email-error-signup" style={{ top: "140px" }}>
         Email already chosen
       </small>
     );
@@ -170,8 +174,14 @@ const ModalSignUp = ({ history }) => {
   //determines what to display on modal
   let StepView;
   if (modalStep === 1) {
-    StepView = (
-      <section
+
+    if(isLoadingView){
+      StepView = (
+        <Spinner animation="border" variant="warning siginup-spinner" />
+      );
+    }else{
+      StepView = (
+        <section
         className="step-1-view-on-modal"
         style={modalStep === 1 ? { display: "block" } : { display: "none" }}
       >
@@ -195,8 +205,8 @@ const ModalSignUp = ({ history }) => {
                 : "0 5px 10px 0 rgba(165, 186, 255, 0.48)"
             }
             buttonColor={isNextButtonDisabled ? "graytext" : "#ffff"}
-            width="60px"
-            Height="30px"
+            width="80px"
+            Height="50px"
             borderRadius="9999px"
             disabled={isNextButtonDisabled ? true : false}
             onClick={showStep2}
@@ -206,13 +216,13 @@ const ModalSignUp = ({ history }) => {
         </div>
         <div className="mt-3">
           <h4 className="text-left ogibib">Create your account</h4>
-          <Form className="mt-5">
+          <Form className="mt-3">
             <Form.Group
               controlId="formBasicEmail"
               style={{ backgroundColor: "rgb(25, 39, 52)" }}
               className="klnskjda"
             >
-              <Form.Label className="mb-0">Name</Form.Label>
+              <Form.Label className="">Name</Form.Label>
               <Form.Control
                 type="text"
                 style={{ backgroundColor: "rgb(25, 39, 52)", color: "white" }}
@@ -245,8 +255,8 @@ const ModalSignUp = ({ history }) => {
               style={{ backgroundColor: "rgb(25, 39, 52)" }}
               className={
                 isShowEmailError
-                  ? "klnskjda mb-0 mt-5 mb-0 nlp"
-                  : "klnskjda mb-0 mt-5 mb-0"
+                  ? "klnskjda mb-0 mt-3 mb-0 nlp"
+                  : "klnskjda mb-0 mt-3 mb-0"
               }
             >
               <Form.Label> Email</Form.Label>
@@ -272,7 +282,8 @@ const ModalSignUp = ({ history }) => {
           ""
         )}
       </section>
-    );
+      );
+    }
   }
 
   return (
