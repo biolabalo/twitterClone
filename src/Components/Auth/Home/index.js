@@ -6,7 +6,7 @@ const Login = ({ history }) => {
   return (
     <>
       <div className="main-container">
-        <div className="left">
+        <div className="left animated fadeInLeft">
           <div className="communication-box">
             <div className="message">
               <span className="icon search"></span>
@@ -22,7 +22,7 @@ const Login = ({ history }) => {
             </div>
           </div>
         </div>
-        <div className="right" style={{background: "#fff"}}>
+        <div className="right  animated fadeInRight" style={{background: "#fff"}}>
           <div className="join-box">
             <span className="icon bird"></span>
              <Link to="/login" style={{ textDecoration: "none"}}>   <button id="login-button" className="float-right mt-3">Log in</button></Link>
