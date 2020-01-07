@@ -1,0 +1,69 @@
+import React, { useContext } from "react";
+import { userContext } from "../../store";
+
+const Comment = ({ eachComment }) => {
+  const [userData, setUserData] = useContext(userContext);
+  const { userData: commentInfo, comment } = eachComment;
+  console.log(commentInfo, comment);
+  return (
+    <div
+      className="section-header p-3"
+      style={
+        userData && userData.userTheme
+          ? {
+              borderBottom: `1px solid ${userData.userTheme.borderColor}`
+            }
+          : {
+              borderBottom: `1px solid black`
+            }
+      }
+    >
+      <div className="row w-100 no-gutters">
+        <div className="col-1">
+          <div className="mt-3">
+            <img
+              src={
+                userData && userData.url
+                  ? userData.url
+                  : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAwFBMVEXM1t3K1dy5xc2xvca7xs+KmaVrfYtld4agrrhneYhoeoiksbufrbegrbe7xs66xs6Dk5+/ytKdqrWElKCDk6Byg5HG0NjEz9bH0dlqfIprfIuAkJ2ir7nJ09p1hpN0hZO9yNDH0tmbqbTBzNOzv8iqtsCotL6ntL7L1dy3w8yjsLqVpK+Onam8x9CRn6ttf43CzdWMm6dmeIeLmqauusSwvMVxgpCToa29ydFneIeRoKzK1Nttfo2yvseZp7KHl6OOgUPZAAAA80lEQVR4Ae3SA5oDQRgE0Aortm1zNub9T7Xm4O/+uMo7w8O/duNyezxuF3R5fX4+8vu80BII8lUoDA0RfhKFUizIT4JxqCT4RQIKSZokIUvRJAVZmiYZyLI0yUIWpEkQohwtcpDkaZGHpECLAkRFmpQgK9OkDFmFJhXIqjV+Ua9CoZHlJ9kGlJqtLF9lW01oaXe6vX6308aPMRiOxpPJeDQcQMd0Nuer+WwKlcXS4CfG3QKi1Zwm8xUEAYMWRkAZSbvT2qAtYw1bzQ0dbJqws6WjLWzs9nS038HqQMEBFscTBacjzDoUnWF2oegCsytFV7x6ADhgICRy9ELGAAAAAElFTkSuQmCC"
+              }
+              className="main-avatar-img"
+            />
+          </div>
+        </div>
+        {/* <div className="col-11 pl-4 pt-2">
+          <small>vcndff</small>
+          <br />
+          <small>vcndff</small>
+        </div> */}
+        <div className="col-10 pt-3 pl-2">
+          <p className="mb-0">
+            <small className="font-weight-bold mb-1">
+              {" "}
+              {commentInfo ? commentInfo.fullName : ""}
+              <svg
+                viewBox="0 0 24 24"
+                aria-label="Verified account"
+                className="main-img Verified-account d-inline"
+              >
+                <g>
+                  <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"></path>
+                </g>
+              </svg>
+            </small>
+            <small>{commentInfo ? commentInfo.Handle : ""}</small>
+          </p>
+          <small style={{ fontSize: "10px", verticalAlign: "top" }}>
+            Replying to {commentInfo ? commentInfo.Handle : ""}
+          </small>
+        </div>
+
+      </div>
+      <p className="d-block">
+          <small className="pl-3">{comment}</small>
+     </p>
+    </div>
+  );
+};
+
+export default Comment;

@@ -3,7 +3,7 @@ import ProfileIcon from "../../assets/png/default_profile_normal.png";
 import TweetImage from "../../assets/png/media.jpg";
 
 const TweetComponent = ({ tweetsOnTime }) => {
-    console.log(tweetsOnTime);
+  
 
 
     if(!tweetsOnTime.length){

@@ -18,3 +18,11 @@ html,body{
 background-color: rgb(245,248,250) !important;
 transition-duration: 0.2s;
 }
+
+.Verified-account{
+  fill: rgb(29, 161, 242);
+}
+
+.dsdesdae:hover{
+  border-radius: none !important;
+}
