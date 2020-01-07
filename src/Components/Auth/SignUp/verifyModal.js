@@ -136,6 +136,7 @@ const VerifyModal = ({ history }) => {
                       className="asap-riv mb-0"
                       name="password"
                       required
+                      placeholder="input your password"
                       ref={register({
                         required: "Password Field is empty",
                         minLength: {

@@ -44,7 +44,6 @@ const SingleTweet = ({ match: { params } }) => {
     const fetchLikedTweets = async () => {
       try {
         db.collection("comments")
-          .orderBy("createdAt", "desc")
           .where("tweetId", "==", tweetID)
           .onSnapshot(function(querySnapshot) {
             var comments = [];

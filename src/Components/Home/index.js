@@ -232,13 +232,6 @@ const Home = ({ history }) => {
       });
   };
 
-  const popover = () => (
-    <Popover id="popover-basic">
-      <Popover.Title as="h3">Retweet</Popover.Title>
-      <Popover.Title as="h3">Retweet with Comment</Popover.Title>
-    </Popover>
-  );
-
   let TweetsView;
   if (isTweetsLoading) {
     TweetsView = <Spinner animation="border" />;
@@ -317,7 +310,7 @@ const Home = ({ history }) => {
               </div>
             </div>
             <div className="tweet-text-container">
-              <p>{eachTweet.tweet}</p>
+              <p style={{ fontSize: "13px"}}>{eachTweet.tweet}</p>
             </div>
             <div className="stream-media-container">
               {eachTweet.tweetImage ? (
@@ -363,7 +356,7 @@ const Home = ({ history }) => {
                         trigger="click"
                         placement="right"
                         overlay={
-                          <Popover id="popover-basic">
+                          <Popover  id={`popover-positioned-bottom`}>
                             <Popover.Title
                               as="h3"
                               onClick={() => retweet(eachTweet.id)}

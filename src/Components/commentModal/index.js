@@ -32,7 +32,7 @@ const CommentModal = ({
     setCommentModal(false);
     setComment("");
 
-    db.collection("likes")
+    db.collection("comments")
       .where("tweetId", "==", tweetSelectedForComment.id)
       .where("userWhoLiked", "==", firebase.auth().currentUser.uid)
       .get()
@@ -46,12 +46,14 @@ const CommentModal = ({
             userData,
             createdAt: new Date().toISOString(),
           });
+
           batch.set(tweetCountRef, { comment: increment }, { merge: true });
           batch.commit();
         }
 
         snapshot.docs.forEach(document => {
           if (document.exists) {
+
             // Tweet exists delete the like doc and decrement count
             batch.delete(db.collection("comments").doc(document.id));
             batch.set(tweetCountRef, {  comment: decrement }, { merge: true });
