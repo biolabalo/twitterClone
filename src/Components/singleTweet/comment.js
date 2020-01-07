@@ -4,7 +4,7 @@ import { userContext } from "../../store";
 const Comment = ({ eachComment }) => {
   const [userData, setUserData] = useContext(userContext);
   const { userData: commentInfo, comment } = eachComment;
-  console.log(commentInfo, comment);
+
   return (
     <div
       className="section-header p-3"
@@ -18,7 +18,7 @@ const Comment = ({ eachComment }) => {
             }
       }
     >
-      <div className="row w-100 no-gutters">
+      <div className="row no-gutters" style={{ width: "100%" }}>
         <div className="col-1">
           <div className="mt-3">
             <img
@@ -31,13 +31,8 @@ const Comment = ({ eachComment }) => {
             />
           </div>
         </div>
-        {/* <div className="col-11 pl-4 pt-2">
-          <small>vcndff</small>
-          <br />
-          <small>vcndff</small>
-        </div> */}
-        <div className="col-10 pt-3 pl-2">
-          <p className="mb-0">
+        <div className="col-11 p-3">
+          <div className="mb-0">
             <small className="font-weight-bold mb-1">
               {" "}
               {commentInfo ? commentInfo.fullName : ""}
@@ -51,17 +46,37 @@ const Comment = ({ eachComment }) => {
                 </g>
               </svg>
             </small>
-            <small>{commentInfo ? commentInfo.Handle : ""}</small>
-          </p>
-          <small style={{ fontSize: "10px", verticalAlign: "top" }}>
-            Replying to {commentInfo ? commentInfo.Handle : ""}
-          </small>
+            <small
+              style={{
+                fontSize: "15px",
+                opacity: "0.5"
+              }}
+            >
+              {commentInfo ? commentInfo.Handle : ""}
+            </small>
+            <p
+              className="mb-0"
+              style={{
+                fontSize: "12px",
+                opacity: "0.5"
+              }}
+            >
+              Replying to{" "}
+              <span
+                style={
+                  userData && userData.userColor
+                    ? { color: userData.userColor }
+                    : "white"
+                }
+              >
+                {" "}
+                {commentInfo ? commentInfo.Handle : ""}
+              </span>
+            </p>
+            <span style={{ fontSize: "13px"}}>{comment}</span>
+          </div>
         </div>
-
       </div>
-      <p className="d-block">
-          <small className="pl-3">{comment}</small>
-     </p>
     </div>
   );
 };

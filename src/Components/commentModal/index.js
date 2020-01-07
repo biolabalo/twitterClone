@@ -43,7 +43,8 @@ const CommentModal = ({
             userWhoCommented: firebase.auth().currentUser.uid,
             tweetId :  tweetSelectedForComment.id,
             comment,
-            userData
+            userData,
+            createdAt: new Date().toISOString(),
           });
           batch.set(tweetCountRef, { comment: increment }, { merge: true });
           batch.commit();

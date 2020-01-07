@@ -44,6 +44,7 @@ const SingleTweet = ({ match: { params } }) => {
     const fetchLikedTweets = async () => {
       try {
         db.collection("comments")
+          .orderBy("createdAt", "desc")
           .where("tweetId", "==", tweetID)
           .onSnapshot(function(querySnapshot) {
             var comments = [];
@@ -278,7 +279,14 @@ const SingleTweet = ({ match: { params } }) => {
                               </g>
                             </svg>
                           </p>
-                          <p>{tweet ? tweet.Handle : ""}</p>
+                          <p
+                            style={{
+                              fontSize: "15px",
+                              opacity: "0.5"
+                            }}
+                          >
+                            {tweet ? tweet.Handle : ""}
+                          </p>
                         </div>
                       </div>
                       <p>{tweet ? tweet.tweet : ""}</p>
@@ -450,7 +458,7 @@ const SingleTweet = ({ match: { params } }) => {
                                   <svg
                                     viewBox="0 0 24 24"
                                     className="main-img"
-                                    onClick={() => LikeOrUnLikeTweet(tweet.id)}
+                                    onClick={() => LikeOrUnLikeTweet(tweetID)}
                                     fill={
                                       userData && userData.userTheme
                                         ? userData.userTheme.color
@@ -501,7 +509,9 @@ const SingleTweet = ({ match: { params } }) => {
 
                   {comments
                     ? comments.map((eachComment, index) => {
-                        return <Comment key={index} eachComment={eachComment}/>;
+                        return (
+                          <Comment key={index} eachComment={eachComment} />
+                        );
                       })
                     : ""}
 
@@ -603,12 +613,13 @@ const SingleTweet = ({ match: { params } }) => {
             </main>
           </div>
         </main>
-        {/* <CommentModal
-              setCommentModal={setCommentModal}
-              openCommentModal={openCommentModal}
-              tweetSelectedForComment={tweetSelectedForComment}
-              userData={userData}
-            /> */}
+        <CommentModal
+          setCommentModal={setCommentModal}
+          openCommentModal={openCommentModal}
+          tweetSelectedForComment={{...tweetSelectedForComment, id:tweetID}}
+          userData={userData}
+
+        />
       </>
     );
   }

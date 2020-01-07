@@ -15,7 +15,6 @@ html,body{
 
 
 .stream-container:hover{
-background-color: rgb(245,248,250) !important;
 transition-duration: 0.2s;
 }
 
