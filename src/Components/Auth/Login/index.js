@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
-import useForm from "react-hook-form";
+import { useForm } from "react-hook-form";
 import firebase from "../../../firebaseConfig";
 import setColor from "../../../setColor";
 
